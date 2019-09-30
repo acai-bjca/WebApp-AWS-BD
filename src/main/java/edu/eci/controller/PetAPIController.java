@@ -17,20 +17,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping()
+@RequestMapping(value="/pets")
 public class PetAPIController {
     //static ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
     @Autowired
     PetServices petService;
 
     
-    @RequestMapping(value = "/pets", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Pet>> manejadorGetRecursoMascotas() throws ResourceNotFoundException {
         System.out.println("Entro al GET");
-        List<Pet> data;
+        List<Pet> data = null;
         try {
             data = petService.getAllPets();
-            return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
+            for(int i=0; i <data.size(); i++){
+                System.out.println(data.get(i).getName());
+            }
+            return new ResponseEntity<List<Pet>>(data, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             throw new ResourceNotFoundException(ex.getMessage());
         }

@@ -9,8 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
-@Configuration
+@Service
 public class PetServices{    
     private static List<Pet> pets;
     
@@ -33,6 +34,7 @@ public class PetServices{
     }
     
     public List<Pet> getAllPets() {
+        System.out.println("edu.eci.services.PetServices.getAllPets()");
         connDao.RetriveConnection();
         /*HashMap<String, Pet> petsH = persistence.getPets();
         List<Pet> pets = new ArrayList<>();
