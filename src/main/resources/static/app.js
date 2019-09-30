@@ -6,30 +6,33 @@ var sillas;
 function llenarTabla() {
     $("#tb1").empty();
     $("#thead").empty();
-    var fila = "<tr><td name='nombre'>Nombre</td><td>Responsable</td><td>Edad</td><td>Teléfono</td></tr>";    
-    $("#thead").append(fila);   
+    var fila = "<tr><td name='name'>Nombre</td><td>Responsable</td><td>Edad</td><td>Teléfono</td></tr>";
+    $("#thead").append(fila);
     $("#tbody").empty();
     for (i = 0; i < petsG.length; i++) {
         var numFun = i + 1;
-        var pelicula = petsG[i].name;
-        var responsable = sillasDisponibles(funciones[i].seats);
-        var edad = funciones[i].date;
-        var telefono = funciones[i].date;
-        var fila = "<tr><td name='nombre'>" + pelicula + "</td><td>" + responsable + "</td><td>" + edad + "</td><td>" + telefono + "</td></tr>";
+        var name = petsG[i].name;
+        var owner = petsG[i].owner;
+        var age = petsG[i].age;
+        var phone = petsG[i].phone;
+        var fila = "<tr><td name='nombre'>" + name + "</td><td>" + owner + "</td><td>" + age + "</td><td>" + phone + "</td></tr>";
         $("#tb1").append(fila);
     }
 }
 
-function sillasDisponibles(sillas) {
-    var cont = 0;
-    for (var i = 1; i < sillas.length; i++) {
-        for (var j = 1; j < sillas[i].length; j++) {
-            if (sillas[i][j] == true) {
-                cont++;
-            }
-        }
-    }
-    return cont;
+function savePetA() {
+    console.log($('pName').text());
+    console.log("GUARDANDO");
+
+
+    //var pet = new Object();
+    //pet.name = $('pName').val();
+    //pet.owner = $('pOwner').val();
+    //pet.age = $('pAge').val();
+    //pet.phone = $('pPhone').val();
+
+    //console.log(pet.name,  pet.owner,  pet.age);
+
 }
 
 app = (function () {
@@ -38,7 +41,7 @@ app = (function () {
     return {
         obtenerMascotas: function (pets) {
             mascotas = pets;
-            petsG = pets;            
+            petsG = pets;
             llenarTabla();
             //document.getElementById("funcionesTxt").innerHTML = functionscinema[0].movie.name;
         },
@@ -48,6 +51,12 @@ app = (function () {
             //document.getElementById("funcionesTxt").innerHTML = "function app";
             apiclient.getPets(app.obtenerMascotas);
             //apimock.getCinemaByName(nameCinema, app.obtenerFunciones);
+        },
+
+        guardarMascota: function () {
+            console.log($("#pName").text());
+            console.log("GUARDANDO");
+            console.log($('pName').val());
         }
     };
 })();
