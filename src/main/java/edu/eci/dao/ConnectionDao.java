@@ -59,10 +59,11 @@ public class ConnectionDao {
         
         try {
             Statement stmt = conn.createStatement();
-            String values = "'"+pet.getName()+"','"+pet.getOwner()+"',"+pet.getAge()+","+pet.getPhone();
+            String values = "'"+pet.getName()+"','"+pet.getOwner()+"',"+pet.getAge()+",'"+pet.getPhone()+"'";
             stmt.executeUpdate("INSERT INTO mascotas (nombre, responsable, edad, celular) VALUES ("+values+")");
-            //ResultSet rs = stmt.executeQuery("INSERT INTO mascotas (nombre, responsable, edad, celular) VALUES ("+values+")");            
+            System.err.println("No se guardó");
         } catch (Exception e) {
+            System.err.println("No se guardó");
             e.printStackTrace();
         }
         //con.close();  

@@ -21,16 +21,14 @@ function llenarTabla() {
 }
 
 function savePetA() {
-    console.log($('pName').text());
-    console.log("GUARDANDO");
-
-
-    //var pet = new Object();
-    //pet.name = $('pName').val();
-    //pet.owner = $('pOwner').val();
-    //pet.age = $('pAge').val();
-    //pet.phone = $('pPhone').val();
-
+    var pet = new Object();
+    pet.name = document.getElementById("pName").value;
+    pet.owner = document.getElementById("pOwner").value;
+    pet.age = parseInt(document.getElementById("pAge").value);
+    pet.phone = document.getElementById("pPhone").value;
+    alert(pet.name);
+    apiclient.savePet(pet);
+    console.log("Termino");
     //console.log(pet.name,  pet.owner,  pet.age);
 
 }
@@ -54,9 +52,11 @@ app = (function () {
         },
 
         guardarMascota: function () {
-            console.log($("#pName").text());
-            console.log("GUARDANDO");
-            console.log($('pName').val());
+            console.log("GUARDANDO1");
+            var nom = document.getElementById("pName").value;
+            alert(nom);
+            console.log(document.getElementById("pName").value);
+            console.log("GUARDANDO2");
         }
     };
 })();

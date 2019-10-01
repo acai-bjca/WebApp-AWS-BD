@@ -39,22 +39,23 @@ public class PetAPIController {
         }
     }
     
-    @RequestMapping(value = "/pet/", method = RequestMethod.GET)
-    public ResponseEntity<List<Pet>> listAllUsers() {
-        List<Pet> pets = petService.getAllPets();
-        if(pets.isEmpty()){
-            return new ResponseEntity<List<Pet>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Pet> manejadorPostRecursoCinema(@RequestBody Pet pet) throws ResourceNotFoundException {
+        System.out.println("Entro al POST");
+        try {
+            petService.addNewPet(pet);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {            
+            //return new ResponseEntity<?>("No fue posible crear el recurso", HttpStatus.FORBIDDEN);
+            throw new ResourceNotFoundException(ex.getMessage());
         }
-        return new ResponseEntity<List<Pet>>(pets, HttpStatus.OK);
-    } 
-       
+    }
 
     @RequestMapping("/{name}")
     public HttpEntity getAddressName(@PathVariable String name) {
         try {
             // obtener datos que se enviarán a través del API
             Object data = petService.getPetByName(name);
-
             return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(PetAPIController.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,14 +63,5 @@ public class PetAPIController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{petName}")
-    public ResponseEntity<?> manejadorPostRecursoCinema(@RequestBody Pet pet, @PathVariable String petName) {
-        try {
-            petService.addNewPet(pet);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception ex) {
-            Logger.getLogger(PetAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No fue posible crear el recurso", HttpStatus.FORBIDDEN);
-        }
-    }
+    
 }

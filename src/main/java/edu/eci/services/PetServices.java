@@ -12,9 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PetServices{    
+public class PetServices {
+
     private static List<Pet> pets;
-    
+
     @Autowired
     PetPersistence persistence;
     ConnectionDao connDao = new ConnectionDao();
@@ -25,14 +26,12 @@ public class PetServices{
         pets = connDao.getPetList(conn);
     }
 
-    public void addNewPet(Pet pet) throws PetException {
-        try {
-            persistence.savePet(pet);
-        } catch (PetPersistenceException e) {
-            throw new PetException(e.getMessage(), e);
-        }
+    public void addNewPet(Pet pet) throws PetException {        
+        connDao.RetriveConnection();
+        connDao.savePet(conn, pet);
+
     }
-    
+
     public List<Pet> getAllPets() {
         System.out.println("edu.eci.services.PetServices.getAllPets()");
         connDao.RetriveConnection();
