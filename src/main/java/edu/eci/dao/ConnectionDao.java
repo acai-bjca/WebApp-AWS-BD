@@ -25,9 +25,9 @@ public class ConnectionDao {
 
             //con = DriverManager.getConnection("jdbc:mysql://instanciadb.ceh1r5gbitwq.us-east-1.rds.amazonaws.com:3306/user", "root", "amalia123");
             con = DriverManager.getConnection(jdbcUrl);
-            System.out.println("edu.eci.dao.ConnectionDao.RetriveConnection() SE CONECTO");
+            System.out.println("Se conectó a la base de datos.");
         } catch (Exception e) {
-            System.out.println("No se conecto "+ e);
+            System.out.println("No se conectó a la base de datos."+ e);
         }
         return con;
     }
@@ -61,7 +61,7 @@ public class ConnectionDao {
             Statement stmt = conn.createStatement();
             String values = "'"+pet.getName()+"','"+pet.getOwner()+"',"+pet.getAge()+",'"+pet.getPhone()+"'";
             stmt.executeUpdate("INSERT INTO mascotas (nombre, responsable, edad, celular) VALUES ("+values+")");
-            System.err.println("No se guardó");
+            System.err.println("Se guardó");
         } catch (Exception e) {
             System.err.println("No se guardó");
             e.printStackTrace();

@@ -27,6 +27,8 @@ apiclient = (function () {
                 contentType: "application/json",
             }).done(function () {
                 alert("La mascota se guardó correctamente.");
+            }).fail(function () {
+                alert("La mascota no se guardó correctamente.");
             });
         }
     };

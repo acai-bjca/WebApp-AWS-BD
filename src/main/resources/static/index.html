@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>WebApp</title>
-         <meta charset="UTF-8">        
+        <meta charset="UTF-8">        
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -68,17 +68,18 @@
                             <div class="form-group">
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-lg" style="background-color: darkturquoise" onclick="savePetA()">Guardar</button>
+                                    <button type="button" class="btn btn-primary btn-lg" style="background-color: darkturquoise" onclick="app.buscarMascotas()">Mostrar</button>                    
+                                    <table id="tablePets" class="table table-bordered" style="font-size: 18px; color: white; margin: 0 auto; padding: 1; margin-bottom: 30px; margin-top: 30px;">
+                                        <thead id="thead">                                        
+                                        </thead>
+                                        <tbody id="tb1">
+                                        </tbody>
+                                    </table> 
                                 </div>
                             </div>
                         </fieldset>
                     </form>                                      
-                    <button type="button" class="btn" onclick="app.buscarMascotas()">Mostrar</button>                    
-                    <table id="tablePets" class="table table-bordered" style="font-size: 18px; color: white; margin: 0 auto; padding: 1; margin-bottom: 30px; margin-top: 30px;">
-                        <thead id="thead">                                        
-                        </thead>
-                        <tbody id="tb1">
-                        </tbody>
-                    </table> 
+
                 </div>
                 <div class="col-md-4"></div>
             </div>
