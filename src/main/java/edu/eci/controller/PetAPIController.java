@@ -8,23 +8,22 @@ package edu.eci.controller;
 import edu.eci.model.Pet;
 import edu.eci.services.PetServices;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/pets")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+//@RequestMapping(value="/pets")
 public class PetAPIController {
     //static ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
     @Autowired
     PetServices petService;
 
     
-    @RequestMapping(method = RequestMethod.GET)
+    //@RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/pets")
     public ResponseEntity<List<Pet>> manejadorGetRecursoMascotas() throws ResourceNotFoundException {
         System.out.println("Entro al GET");
         List<Pet> data = null;
@@ -39,7 +38,10 @@ public class PetAPIController {
         }
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    
+    
+    //@RequestMapping(method = RequestMethod.POST)
+    @PostMapping("/pets")
     public ResponseEntity<Pet> manejadorPostRecursoCinema(@RequestBody Pet pet) throws ResourceNotFoundException {
         System.out.println("Entro al POST");
         try {
