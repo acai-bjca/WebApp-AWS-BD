@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tutorial</title>
+        <meta charset="UTF-8">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Custom fonts for this template -->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    </head>
+
+    <body id="page-top">
+        <nav id=sideNav"" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <h3 class="mb-0">Amalia Alfonso - AREP - Tutorial
+                    <span class="text-primary">Taylor</span>
+                </h3>                
+            </a>
+        </nav>>
+        <div class="container-fluid p-0">
+            <br><br>
+            <section class="resume-section align-items-center" style="padding: 3rem; padding-bottom: 0; padding-top: 0;">
+                <div class="w-100">
+                    <h2 class="mb-0">Tutorial Sitio Web con AWS
+                        <span class="text-primary" style="font-size: medium">RDS - EC2 - S3</span>
+                    </h2>
+                    <div class="subheading mb-5">
+                        Escuela Colombiana de Ingeniería Julio Garavito ·
+                        <span style="font-size: x-large">Amalia Alfonso</span>
+                    </div>
+                    <p style="font-size: medium">En este turorial se explicará cómo realizar un sitio web dinámico haciendo uso de los servicios de AWS. El sitio hará uso de 3 servicios de AWS: EC2, S3 y RDS.
+                        <br>En S3 se desplegar'an archivos estáticos, que usará la app en java de EC2.
+                        <br>En EC2 se desplegará una aplicación de java con REST usando Spring Boot, la cual responderá a peticiones desde S3.
+                        <br>En RDS se creará una base de datos que permitará almacenar y cargar datos al sitio web.
+                        <br><br>El repositorio está disponible en: WebApp-AWS-BD
+                        <a href="https://github.com/acai-bjca/WebApp-AWS-BD">WebApp-AWS-BD</a>
+                    </p>                    
+                </div>
+            </section>
+
+            <hr class="m-0">
+            <section class="resume-section align-items-center" style="padding: 3rem; padding-bottom: 0; padding-top: 1rem;">
+                <div>
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Base de datos</h3>
+                            <p>Para empezar usaremos el servicio RDS de AWS para crear una base de datos en MySQL:
+                                <br>1. Crear instancia
+                                <br>2. Configuración general
+                                <br>3. Crear un nuevo VPC
+                                <br>4. Probar conexión con una herramienta de base de datos
+                                <br>5. Crear tabla e insertar datos                                
+                                <br>6. Configurar la aplicación en java para que se conecte a la base de datos y probar
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">EC2</h3>
+                            <p>1. Configurar el VPC creado para que se pueda acceder públicamente por puerto de MySQL1. 
+                                <br>2. Crear instancia
+                                <br>3. Configurar el VPC para que se pueda acceder públicamente por http y el puerto 8080
+                                <br>4. Ejecutar instancia con ssh
+                                <br>5. Verificar versión: java -version
+                            <div style="padding-left: 3rem; padding-top: 0;">
+                                descargar version en java:
+                                <br>sudo yum remove java-1.7.0-openjdk
+                                <br>sudo yum install java-1.8.0
+                                <br>version : java -version 
+                            </div>
+                            
+                            <br>6. Subir aplicación con sftp después de generar el archivo .jar
+                            <br>7. Abrir navegador con Public DNS (IPv4) y el puerto 8080
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">S3</h3>
+                            <p>1. Crear bucket
+                                <br>2. Modificar archivos estáticos para que acepten cors
+                                <div style="padding-left: 3rem; padding-top: 0;">
+                                    index.html: se debe agregar un script que permite el uso de axios:
+                                    <br>appclient.js: se deben cambiar los métodos para que ahora usen axios para realizar las peticiones
+                                    <br>En la url de cada petición se debe poner la dirección del DNS público de la instancia del EC2
+                                </div>
+                                <br>3. Subir archivos estáticos y ponerlos públicos
+                                <br>4. Configurar permisos en el bucket para que acepte cors
+                                <br>5. Modificar y actualizar app de EC2 para que reciba peticiones por cors
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0">
+
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+                <div class="w-100">
+                    <h2 class="mb-5">Referencias</h2>
+                    <ul class="fa-ul mb-0">
+                        <li>Run Spring Boot App in EC2 Instance using S3 | Amazon Web Services
+                            <a href="https://www.youtube.com/watch?v=6RrqytT0-I8&t=1s">Video</a>
+                        </li>
+                            
+                        <li>Amazon S3 svgs and favicon not displaying
+                            <a href="https://www.measureddesigns.com/amazon-s3-svgs-favicon-not-displaying/">Página</a>
+                        </li>
+                        
+                        <li>Cross-Origin Resource Sharing (CORS, Uso compartido de recursos entre orígenes)
+                            <a href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/dev/cors.html">Página</a>
+                        </li>
+                        
+                        <li>AWS Tutorial - Launch a RDS MySQL instance and connect to it using Linux EC2
+                            <a href="https://www.youtube.com/watch?v=xzCgeRxSzy4&t=741s">Video</a>
+                        </li>
+                        
+                        <li>Spring REST CORS y su configuración
+                            <a href="https://www.youtube.com/watch?v=xzCgeRxSzy4&t=741s">Video</a>
+                        </li>
+                        
+                        <li>Amazon S3 svgs and favicon not displaying
+                            <a href="https://www.measureddesigns.com/amazon-s3-svgs-favicon-not-displaying/">Página</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
