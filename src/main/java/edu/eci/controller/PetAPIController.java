@@ -49,19 +49,5 @@ public class PetAPIController {
             //return new ResponseEntity<?>("No fue posible crear el recurso", HttpStatus.FORBIDDEN);
             throw new ResourceNotFoundException(ex.getMessage());
         }
-    }
-
-    @RequestMapping("/{name}")
-    public HttpEntity getAddressName(@PathVariable String name) {
-        try {
-            // obtener datos que se enviarán a través del API
-            Object data = petService.getPetByName(name);
-            return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(PetAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error Mascota no encontrada", HttpStatus.NOT_FOUND);
-        }
-    }
-
-    
+    }    
 }

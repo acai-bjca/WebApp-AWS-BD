@@ -15,10 +15,10 @@ public class ConnectionDao {
     public Connection RetriveConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String dbName = "db1";
+            String dbName = "bd2";
             String userName = "root";
             String password = "amalia123";
-            String hostname = "instanciadb.ceh1r5gbitwq.us-east-1.rds.amazonaws.com";
+            String hostname = "instancia1.ceh1r5gbitwq.us-east-1.rds.amazonaws.com";
             String port = "3306";
             String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
             String jdbcUrl2 = "jdbc:mysql://" + hostname + ":" + port;
@@ -41,7 +41,7 @@ public class ConnectionDao {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from mascotas");
             while (rs.next()) {
-                Pet pet = new Pet(rs.getString(2),rs.getString(3),rs.getInt(4),String.valueOf(rs.getInt(5)));
+                Pet pet = new Pet(rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5));
                 petList.add(pet);
             }
             System.out.println("list is: " + petList.size());
@@ -65,7 +65,6 @@ public class ConnectionDao {
         } catch (Exception e) {
             System.err.println("No se guardó");
             e.printStackTrace();
-        }
-        //con.close();  
+        } 
     }
 }
